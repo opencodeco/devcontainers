@@ -1,0 +1,11 @@
+{
+    "id": "install-php-extensions",
+    "version": "0.1.225",
+    "name": "install-php-extensions",
+    "options": {
+        "extensions": {
+            "type": "string",
+            "default": ""
+        }
+    }
+}
