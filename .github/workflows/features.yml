@@ -5,10 +5,11 @@ on:
       - main
 
 jobs:
-  build:
+  features:
     runs-on: ubuntu-latest
     steps:
-    - name: "Publish Features"
+    - uses: actions/checkout@v3
+    - name: Features
       uses: devcontainers/action@v1
       with:
         publish-features: "true"
