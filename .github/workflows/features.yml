@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   features:
@@ -10,7 +11,6 @@ jobs:
     permissions:
       packages: write
       contents: write
-      pull-requests: write
     steps:
     - uses: actions/checkout@v3
     - name: Check install-php-extensions
