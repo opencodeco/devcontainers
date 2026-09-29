@@ -51,11 +51,11 @@ cleanup() {
 trap cleanup EXIT
 
 printf 'ID=debian\n' > "${tmp}/debian"
-is_debian_like "${tmp}/debian" || fail "debian os-release should match"
+OS_RELEASE="${tmp}/debian" is_debian_like || fail "debian os-release should match"
 printf 'ID="ubuntu"\nID_LIKE=debian\n' > "${tmp}/ubuntu"
-is_debian_like "${tmp}/ubuntu" || fail "ubuntu os-release should match"
+OS_RELEASE="${tmp}/ubuntu" is_debian_like || fail "ubuntu os-release should match"
 printf 'ID=alpine\n' > "${tmp}/alpine"
-if is_debian_like "${tmp}/alpine"; then
+if OS_RELEASE="${tmp}/alpine" is_debian_like; then
   fail "alpine os-release should not match"
 fi
 

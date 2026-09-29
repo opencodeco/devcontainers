@@ -20,7 +20,7 @@ has_official_php_helpers() {
 }
 
 is_debian_like() {
-  local os_release="${1:-/etc/os-release}"
+  local os_release="${OS_RELEASE:-/etc/os-release}"
   local detected
 
   [[ -r "${os_release}" ]] || return 1
