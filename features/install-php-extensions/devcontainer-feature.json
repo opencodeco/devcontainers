@@ -1,11 +1,15 @@
 {
     "id": "install-php-extensions",
-    "version": "0.1.225",
-    "name": "install-php-extensions",
+    "version": "0.1.226",
+    "name": "Install PHP extensions",
+    "description": "Install PHP extensions on official PHP images, or from apt on Debian and Ubuntu images such as mcr.microsoft.com/devcontainers/base.",
+    "documentationURL": "https://github.com/opencodeco/devcontainers/tree/main/features/install-php-extensions",
     "options": {
         "extensions": {
             "type": "string",
-            "default": ""
+            "proposals": ["zip", "gd", "xdebug"],
+            "default": "",
+            "description": "Extension names separated by spaces or commas. Example: zip"
         }
     }
 }
