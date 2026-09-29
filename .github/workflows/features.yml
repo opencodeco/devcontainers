@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Check install-php-extensions
+      run: bash tests/install-php-extensions.sh
     - name: Features
       uses: devcontainers/action@v1
       with:
