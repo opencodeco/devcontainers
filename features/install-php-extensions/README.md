@@ -14,7 +14,22 @@ Any other image stops before that installer is downloaded. The error names both 
 
 `extensions` is a string of extension names separated by spaces or commas. Example: `zip` or `zip, gd`.
 
-## Example
+## Examples
+
+Official PHP image:
+
+```json
+{
+  "image": "php:8.3-cli",
+  "features": {
+    "ghcr.io/opencodeco/devcontainers/install-php-extensions": {
+      "extensions": "zip"
+    }
+  }
+}
+```
+
+Debian or Ubuntu image:
 
 ```json
 {
