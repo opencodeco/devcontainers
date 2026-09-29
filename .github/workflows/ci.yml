@@ -1,0 +1,53 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate feature manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          manifests=(features/*/devcontainer-feature.json)
+          if [[ ${#manifests[@]} -eq 0 ]]; then
+            echo "No devcontainer-feature.json files found."
+            exit 1
+          fi
+          for manifest in "${manifests[@]}"; do
+            jq -e '.id and .version and .name' "${manifest}" >/dev/null
+            echo "ok ${manifest}"
+          done
+      - name: Shellcheck feature scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          scripts=(features/*/install.sh)
+          if [[ ${#scripts[@]} -eq 0 ]]; then
+            echo "No feature install scripts found."
+            exit 1
+          fi
+          shellcheck -x "${scripts[@]}"
+      - name: Run shell tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          tests=(tests/*.sh)
+          if [[ ${#tests[@]} -eq 0 ]]; then
+            echo "No shell tests in tests/."
+            exit 0
+          fi
+          for test in "${tests[@]}"; do
+            bash "${test}"
+          done
